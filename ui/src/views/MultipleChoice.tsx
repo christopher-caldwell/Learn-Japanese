@@ -1,11 +1,11 @@
 import React from 'react'
-import { Card, CardBody } from 'shards-react'
+import Container from 'components/styled/Container'
 
 const MultipleChoice = () => {
   return (
-    <Card>
-      <CardBody>Hello</CardBody>
-    </Card>
+    <Container align='center' justify='center'>
+      <h1>Hey</h1>
+    </Container>
   )
 }
 

@@ -1,18 +1,18 @@
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
 
-import Router from '@/router/Router'
-import logo from './assets/images/logo.svg'
+import Router from 'router/Router'
+import Header from 'components/static/header/Header'
 
-function App() {
+const App = () => {
   return (
     <div className='App'>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-        <BrowserRouter>
+      <BrowserRouter>
+        <Header />
+        <main style={{ marginTop: '50px', width: '100%' }}>
           <Router />
-        </BrowserRouter>
-      </header>
+        </main>
+      </BrowserRouter>
     </div>
   )
 }
