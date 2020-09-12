@@ -5,6 +5,7 @@ interface ContainerProps {
   align?: string
   width?: number
   height?: number
+  padding?: string
 }
 
 const Container = styled.div<ContainerProps>`
@@ -13,6 +14,7 @@ const Container = styled.div<ContainerProps>`
   align-items: ${({ align = 'top' }) => align};
   width: ${({ width = '100' }) => width}%;
   height: ${({ height = '100' }) => height}%;
+  padding: ${({ padding = 0 }) => padding};
 `
 
 export default Container
