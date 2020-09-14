@@ -5,3 +5,22 @@
   left: 0
   right: 0
   height: 50px
+
+.drawerRoot
+  width: 60vw
+  position: absolute
+  left: -60vw
+  top: 0
+  background-color: #adadad
+  height: 100vh
+  transition: transform 0.3s
+  // & *
+  //   max-width: 0px
+  //   transition: max-width .3s ease-in-out , opacity .3s ease-in-out
+  //   opacity: 0
+
+.openDrawer
+  transform: translateX(60vw)
+
+.innerDrawerContainer
+  width: 100%

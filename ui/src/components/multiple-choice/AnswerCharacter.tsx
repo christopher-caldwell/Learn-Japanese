@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react'
+import React from 'react'
 
 import Container from 'components/styled/Container'
 import Col from 'components/styled/Col'

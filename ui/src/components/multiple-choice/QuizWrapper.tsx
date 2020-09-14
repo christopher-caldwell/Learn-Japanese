@@ -1,4 +1,4 @@
-import React, { useState, SetStateAction, Dispatch } from 'react'
+import React, { useState } from 'react'
 
 import MultipleChoiceTargetLetter from 'components/multiple-choice/TargetLetter'
 import AnswerCharacter from 'components/multiple-choice/AnswerCharacter'
@@ -6,11 +6,13 @@ import Container from 'components/styled/Container'
 
 import { generateAnswersForMultipleChoice, generateCorrectAnswerForMultipleChoice } from 'utils'
 
+const initialCorrectAnswer = generateCorrectAnswerForMultipleChoice()
+
 interface Props {
   setNumberOfCorrectAnswers: () => void
 }
 const QuizWrapper = ({ setNumberOfCorrectAnswers }: Props) => {
-  const [correctAnswers, setCorrectAnswers] = useState(generateCorrectAnswerForMultipleChoice())
+  const [correctAnswers, setCorrectAnswers] = useState(initialCorrectAnswer)
   const { correctEnChar, correctJpChar } = correctAnswers
 
   const checkAnswer = (attemptedAnswer: string): void => {

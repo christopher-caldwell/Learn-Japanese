@@ -1,19 +1,22 @@
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
+import { RecoilRoot } from 'recoil'
 
 import Router from 'router/Router'
-import Header from 'components/static/header/Header'
+import CategoryDrawer from 'components/static/header/Drawer'
 
 const App = () => {
   return (
-    <div className='App'>
-      <BrowserRouter>
-        <Header />
-        <main style={{ marginTop: '50px', width: '100%' }}>
-          <Router />
-        </main>
-      </BrowserRouter>
-    </div>
+    <RecoilRoot>
+      <div className='App'>
+        <BrowserRouter>
+          <CategoryDrawer />
+          <main style={{ width: '100%' }}>
+            <Router />
+          </main>
+        </BrowserRouter>
+      </div>
+    </RecoilRoot>
   )
 }
 

@@ -1,13 +1,12 @@
 import { characterMap } from 'constants/japaneseCharacters'
 import { CorrectCharacter } from 'interfaces'
 
-const maxNumOfCharacters = Object.keys(characterMap).length
+// const maxNumOfCharacters = Object.keys(characterMap).length
 const charactersInArrayForm = Object.values(characterMap)
 
 export const shuffle = (originalSet: any[]): any[] => {
-  const maxIndex = originalSet.length - 1
-  for (let iterator = 0; iterator < maxIndex; iterator++) {
-    const randomIndex = Math.floor(Math.random() * maxIndex)
+  for (let iterator = originalSet.length - 1; iterator > 0; iterator--) {
+    const randomIndex = Math.floor(Math.random() * iterator)
     const currentItem = originalSet[iterator]
     originalSet[iterator] = originalSet[randomIndex]
     originalSet[randomIndex] = currentItem
@@ -34,15 +33,15 @@ export const generateAnswersForMultipleChoice = (correctAnswer: string, useJpCha
     mutableCharacterArray.splice(index, 1)
     answers.push(answerToPush[languageToUse])
   }
-
   answers.push(correctAnswer)
-
-  return shuffle(answers)
+  console.log('correct answer %s 4th option %s', correctAnswer, answers[3])
+  const shuffledAnswers = shuffle(answers)
+  console.log('shuffled %s 4th option %s', correctAnswer, shuffledAnswers[3])
+  return shuffledAnswers
 }
 
 export const generateCorrectAnswerForMultipleChoice = (): CorrectCharacter => {
   const indexOfCorrectAnswer = generateRandomNumber(charactersInArrayForm.length - 1)
-  console.log('index', indexOfCorrectAnswer)
   try {
     const { en, jp } = charactersInArrayForm[indexOfCorrectAnswer]
     return {
