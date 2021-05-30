@@ -158,6 +158,7 @@ export const characterMap = {
     jp: 'よ',
     en: 'yo',
   },
+  // ---- //
   ra: {
     jp: 'ら',
     en: 'ra',
@@ -178,6 +179,7 @@ export const characterMap = {
     jp: 'ろ',
     en: 'ro',
   },
+  // ---- //
   wa: {
     jp: 'わ',
     en: 'wa',
