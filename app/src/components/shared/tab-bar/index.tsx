@@ -1,11 +1,11 @@
 import React, { FC, useContext } from 'react'
-import { StyleSheet, Dimensions, View, Animated } from 'react-native'
+import { StyleSheet, View, Animated } from 'react-native'
 import * as shape from 'd3-shape'
 import Svg, { Path } from 'react-native-svg'
 import styled, { ThemeContext } from 'styled-components/native'
 import { BottomTabBarProps, BottomTabBarOptions } from '@react-navigation/bottom-tabs'
 
-import { tabBarHeight } from '@/constants'
+import { tabBarHeight, width } from '@/constants'
 import { Routes } from '@/router/routes'
 import StaticTabBar, { Tab } from './Static'
 
@@ -27,23 +27,14 @@ export const TabBar: FC<Props> = ({ navigation }) => {
 }
 
 const AnimatedSvg = Animated.createAnimatedComponent(Svg)
-const { width } = Dimensions.get('window')
 const tabs: Tab[] = [
   {
     name: Routes.Home,
     icon: 'home',
   },
   {
-    name: Routes.Groups,
-    icon: 'account-multiple',
-  },
-  {
-    name: Routes.Add,
-    icon: 'plus-circle-outline',
-  },
-  {
-    name: Routes.Gifts,
-    icon: 'gift',
+    name: Routes.Game,
+    icon: 'syllabary-hiragana',
   },
   {
     name: Routes.Profile,
@@ -65,14 +56,14 @@ const getPath = (): string => {
     .x(([x]) => x)
     .y(([_, y]) => y)
     .curve(shape.curveBasis)([
-    [width, 0],
-    [width + 5, 0],
-    [width + 10, 5],
-    [width + 15, tabBarHeight - 15],
-    [width + tabWidth - 15, tabBarHeight - 15],
-    [width + tabWidth - 10, 5],
-    [width + tabWidth - 5, 0],
-    [width + tabWidth, 0],
+    [width + 10, 0],
+    [width + 20, 0],
+    [width + 25, 5],
+    [width + 30, tabBarHeight - 15],
+    [width + tabWidth - 30, tabBarHeight - 15],
+    [width + tabWidth - 25, 5],
+    [width + tabWidth - 20, 0],
+    [width + tabWidth - 10, 0],
   ])
 
   const right = shape
