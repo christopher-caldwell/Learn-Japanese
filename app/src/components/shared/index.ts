@@ -1,5 +1,4 @@
 export * from './button'
-export * from './confirmation'
 export * from './containers'
 export * from './icon'
 export * from './input'
