@@ -1,10 +1,17 @@
 import React, { FC, useState } from 'react'
 
-import { Text, TouchableOpacity, View, StyleSheet, InteractionManager, Animated, LayoutChangeEvent } from 'react-native'
+import {
+  Text,
+  TouchableOpacity,
+  View,
+  StyleSheet,
+  InteractionManager,
+  Animated,
+  LayoutChangeEvent,
+  ScrollView,
+} from 'react-native'
 
-import { Icon } from '@/components/shared'
-
-export const DropDownItem: FC<Props> = ({ backgroundColor, label, children, isInitiallyOpen }) => {
+export const DropDownItem: FC<Props> = ({ label, children, isInitiallyOpen, icons }) => {
   const [animated, setAnimated] = useState<Animated.Value | undefined>(undefined)
   const [isMounted, setIsMounted] = useState<boolean>(false)
   const [isContentVisible, setIsContentVisible] = useState<boolean>(!!isInitiallyOpen)
@@ -48,50 +55,64 @@ export const DropDownItem: FC<Props> = ({ backgroundColor, label, children, isIn
   }
 
   return (
-    <Animated.View
-      style={[
-        styles.container,
-        {
-          height: animated,
-          backgroundColor: backgroundColor,
-        },
-      ]}
-    >
-      <TouchableOpacity activeOpacity={0.5} onPress={runAnimation}>
-        <View onLayout={onAnimLayout}>
-          {typeof label === 'string' ? <Text style={styles.contentTxt}>{label}</Text> : label}
-          <Icon name={isContentVisible ? 'chevron-up' : 'chevron-down'} />
-        </View>
-      </TouchableOpacity>
-      <View style={styles.content}>
-        <View style={[styles.contentChild]} onLayout={onLayout}>
-          {children}
-        </View>
-      </View>
-    </Animated.View>
+    <View style={styles.rootContainer}>
+      <ScrollView>
+        <Animated.View
+          style={[
+            styles.container,
+            {
+              height: animated,
+            },
+          ]}
+        >
+          <TouchableOpacity
+            onLayout={onAnimLayout}
+            style={styles.activatorButton}
+            activeOpacity={0.5}
+            onPress={runAnimation}
+          >
+            {typeof label === 'string' ? <Text style={styles.contentTxt}>{label}</Text> : label}
+            {icons ? (isContentVisible ? icons.isOpen : icons.isClosed) : null}
+          </TouchableOpacity>
+          <View style={styles.content}>
+            <View style={[styles.contentChild]} onLayout={onLayout}>
+              {children}
+            </View>
+          </View>
+        </Animated.View>
+      </ScrollView>
+    </View>
   )
 }
 
 interface Props {
   isInitiallyOpen?: boolean
-  backgroundColor?: string
-  titleBackground?: string
-  contentBackground?: string
-  underlineColor?: string
+  /** The text label shown */
   label: JSX.Element | string
+  icons?: {
+    /** The Icon show when the drop down is open */
+    isOpen: JSX.Element
+    /** The Icon show when the drop down is closed */
+    isClosed: JSX.Element
+  }
 }
 
 const styles = StyleSheet.create({
+  rootContainer: {
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   container: {
-    flex: 1,
     flexDirection: 'column',
     overflow: 'hidden',
+    flex: 1,
   },
-  icons: {
-    width: 20,
-    height: 20,
-    position: 'absolute',
-    right: 16,
+  activatorButton: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: '2%',
   },
   underline: {
     width: '100%',
@@ -114,9 +135,8 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   contentTxt: {
-    color: 'black',
-    marginLeft: 8,
-    fontSize: 12,
+    fontSize: 16,
+    width: '90%',
   },
   contentFooter: {
     flex: 1,

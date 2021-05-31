@@ -1,6 +1,7 @@
 import React, { FC, useCallback, useState, useMemo } from 'react'
-import { FlatList, ListRenderItem, ScrollView, Text, View } from 'react-native'
+import { ListRenderItem, Text, View } from 'react-native'
 
+import { Icon } from '@/components/shared'
 import { DropDownItem } from '@/components/shared/drop-down'
 import { RowContainer, OptionLabel, CheckBox } from './elements'
 
@@ -34,46 +35,23 @@ export const MultiSelect: FC<Props> = ({ items, onSelectionChange }) => {
   )
 
   return (
-    <View style={{ height: '100%', justifyContent: 'center', alignItems: 'center' }}>
-      <ScrollView style={{ alignSelf: 'stretch' }}>
-        <DropDownItem
-          label={
-            <View
-              style={{
-                width: '100%',
-                paddingVertical: 8,
-                paddingHorizontal: 12,
-                flexWrap: 'wrap',
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 16,
-                  color: 'blue',
-                }}
-              >
-                Choose
-              </Text>
-            </View>
-          }
-          isInitiallyOpen={false}
-        >
-          <Text
-            style={[
-              {
-                fontSize: 20,
-              },
-            ]}
-          >
-            Yooooo
-          </Text>
-        </DropDownItem>
-        <View style={{ height: 96 }} />
-      </ScrollView>
-    </View>
+    <DropDownItem label='Choose a character set' isInitiallyOpen={false} icons={icons}>
+      {items.map(({ id, label }, index) => (
+        <CheckRow
+          index={index}
+          key={id}
+          label={label}
+          handleSelect={handleSelection}
+          isSelected={!!selectedItems[id]}
+        />
+      ))}
+    </DropDownItem>
   )
+}
+
+const icons = {
+  isClosed: <Icon size={22} name='chevron-down' />,
+  isOpen: <Icon size={22} name='chevron-up' />,
 }
 
 const CheckRow: FC<CheckRowProps> = ({ label, index, isSelected, handleSelect }) => {
