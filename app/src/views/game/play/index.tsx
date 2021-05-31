@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 
-import { ViewContainer, PageTitle } from '@/components/shared'
+import { ViewContainer } from '@/components/shared'
 
 const Play: FC = () => {
   return <ViewContainer></ViewContainer>

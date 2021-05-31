@@ -54,9 +54,11 @@ export const themeText = css`
   font-size: 16px;
 `
 
+export const heavyFontName = 'Avenir-Heavy'
 export const boldFont = css`
-  font-family: 'Avenir-Heavy';
+  font-family: '${heavyFontName}';
 `
+export const regularFontName = 'Avenir'
 export const regularFont = css`
-  font-family: 'Avenir';
+  font-family: '${regularFontName}';
 `

@@ -207,7 +207,6 @@
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				8FCD3193A7F2DDF67B9F8AFD /* [CP] Embed Pods Frameworks */,
 				8F5BC3C47FC296490792540C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -230,7 +229,6 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				94521F38CFB243880022B3A5 /* [CP] Embed Pods Frameworks */,
 				DDFCCEADBE8A07BDB1080346 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -350,40 +348,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LearnJapanese-LearnJapaneseTests/Pods-LearnJapanese-LearnJapaneseTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8FCD3193A7F2DDF67B9F8AFD /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LearnJapanese-LearnJapaneseTests/Pods-LearnJapanese-LearnJapaneseTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LearnJapanese-LearnJapaneseTests/Pods-LearnJapanese-LearnJapaneseTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LearnJapanese-LearnJapaneseTests/Pods-LearnJapanese-LearnJapaneseTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		94521F38CFB243880022B3A5 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LearnJapanese/Pods-LearnJapanese-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LearnJapanese/Pods-LearnJapanese-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LearnJapanese/Pods-LearnJapanese-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9EAB1B2F61724A96A43B494A /* [CP] Check Pods Manifest.lock */ = {
