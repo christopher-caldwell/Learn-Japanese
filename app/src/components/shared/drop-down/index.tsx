@@ -55,33 +55,29 @@ export const DropDownItem: FC<Props> = ({ label, children, isInitiallyOpen, icon
   }
 
   return (
-    <View style={styles.rootContainer}>
-      <ScrollView>
-        <Animated.View
-          style={[
-            styles.container,
-            {
-              height: animated,
-            },
-          ]}
-        >
-          <TouchableOpacity
-            onLayout={onAnimLayout}
-            style={styles.activatorButton}
-            activeOpacity={0.5}
-            onPress={runAnimation}
-          >
-            {typeof label === 'string' ? <Text style={styles.contentTxt}>{label}</Text> : label}
-            {icons ? (isContentVisible ? icons.isOpen : icons.isClosed) : null}
-          </TouchableOpacity>
-          <View style={styles.content}>
-            <View style={[styles.contentChild]} onLayout={onLayout}>
-              {children}
-            </View>
-          </View>
-        </Animated.View>
-      </ScrollView>
-    </View>
+    <Animated.View
+      style={[
+        styles.container,
+        {
+          height: animated,
+        },
+      ]}
+    >
+      <TouchableOpacity
+        onLayout={onAnimLayout}
+        style={styles.activatorButton}
+        activeOpacity={0.5}
+        onPress={runAnimation}
+      >
+        {typeof label === 'string' ? <Text style={styles.contentTxt}>{label}</Text> : label}
+        {icons ? (isContentVisible ? icons.isOpen : icons.isClosed) : null}
+      </TouchableOpacity>
+      <View style={styles.content}>
+        <View style={[styles.contentChild, isMounted ? styles.fullOpacity : styles.hiddenOpacity]} onLayout={onLayout}>
+          {children}
+        </View>
+      </View>
+    </Animated.View>
   )
 }
 
@@ -98,10 +94,11 @@ interface Props {
 }
 
 const styles = StyleSheet.create({
-  rootContainer: {
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
+  fullOpacity: {
+    opacity: 1,
+  },
+  hiddenOpacity: {
+    opacity: 0,
   },
   container: {
     flexDirection: 'column',

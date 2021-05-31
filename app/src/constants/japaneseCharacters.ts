@@ -1,4 +1,9 @@
-export const characterMap = {
+export enum CharacterSetId {
+  Vowels = 'vowels',
+  KCharacters = 'kCharacters',
+}
+
+export const characterMap: Record<string, CharacterSet> = {
   a: {
     jp: 'あ',
     en: 'a',
@@ -202,3 +207,23 @@ const { a, e, i, o, u, ka, ke, ki, ko, ku } = characterMap
 
 export const levelOneCharacters = [a, e, i, o, u]
 export const kCharacters = [ka, ke, ki, ko, ku]
+
+export const characterSetOptions: CharacterSetOption[] = [
+  {
+    label: 'Vowels',
+    id: CharacterSetId.Vowels,
+  },
+  {
+    label: "K's",
+    id: CharacterSetId.KCharacters,
+  },
+]
+
+export interface CharacterSet {
+  jp: string
+  en: string
+}
+export interface CharacterSetOption {
+  label: string
+  id: CharacterSetId
+}

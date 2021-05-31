@@ -11,8 +11,10 @@
     "format": "prettier --write src"
   },
   "dependencies": {
+    "@caldwell619/ms": "^0.0.3",
     "@gorhom/bottom-sheet": "^3.6.5",
     "@gorhom/portal": "^1.0.4",
+    "@gregfrench/react-native-wheel-picker": "^1.2.14",
     "@react-native-community/checkbox": "^0.5.7",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-native-community/slider": "^3.0.3",

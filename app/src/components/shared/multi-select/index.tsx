@@ -1,11 +1,10 @@
-import React, { FC, useCallback, useState, useMemo } from 'react'
-import { ListRenderItem, Text, View } from 'react-native'
+import React, { FC, useCallback, useState } from 'react'
 
-import { Icon } from '@/components/shared'
+import { Icon } from '@/components/shared/icon'
 import { DropDownItem } from '@/components/shared/drop-down'
 import { RowContainer, OptionLabel, CheckBox } from './elements'
 
-export const MultiSelect: FC<Props> = ({ items, onSelectionChange }) => {
+export const MultiSelect: FC<Props> = ({ items, onSelectionChange, dropDownLabel }) => {
   const [selectedItems, setSelectedItems] = useState<SelectedItemMap>({})
 
   const handleSelection = useCallback(
@@ -19,23 +18,8 @@ export const MultiSelect: FC<Props> = ({ items, onSelectionChange }) => {
     [items, onSelectionChange]
   )
 
-  const renderRow: ListRenderItem<SelectionItem> = useMemo(
-    () =>
-      ({ index, item: { label, id } }) =>
-        (
-          <CheckRow
-            index={index}
-            key={id}
-            label={label}
-            handleSelect={handleSelection}
-            isSelected={!!selectedItems[id]}
-          />
-        ),
-    [handleSelection, selectedItems]
-  )
-
   return (
-    <DropDownItem label='Choose a character set' isInitiallyOpen={false} icons={icons}>
+    <DropDownItem label={dropDownLabel} isInitiallyOpen={false} icons={icons}>
       {items.map(({ id, label }, index) => (
         <CheckRow
           index={index}
@@ -82,6 +66,7 @@ const handleSelectionHelper = (
 }
 
 interface Props {
+  dropDownLabel: string
   items: SelectionItem[]
   onSelectionChange: (selectedItems: SelectionItem[]) => void
 }
