@@ -34,11 +34,11 @@ const tabs: Tab[] = [
   },
   {
     name: Routes.Game,
-    icon: 'syllabary-hiragana',
+    icon: 'language',
   },
   {
     name: Routes.Profile,
-    icon: 'account',
+    icon: 'person',
   },
 ]
 const tabWidth = width / tabs.length

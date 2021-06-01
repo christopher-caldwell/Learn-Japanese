@@ -1,15 +1,6 @@
 import React, { FC, useState } from 'react'
 
-import {
-  Text,
-  TouchableOpacity,
-  View,
-  StyleSheet,
-  InteractionManager,
-  Animated,
-  LayoutChangeEvent,
-  ScrollView,
-} from 'react-native'
+import { Text, TouchableOpacity, View, StyleSheet, InteractionManager, Animated, LayoutChangeEvent } from 'react-native'
 
 export const DropDownItem: FC<Props> = ({ label, children, isInitiallyOpen, icons }) => {
   const [animated, setAnimated] = useState<Animated.Value | undefined>(undefined)

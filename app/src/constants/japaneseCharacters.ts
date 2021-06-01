@@ -1,3 +1,5 @@
+import { CharacterSet } from '@/store/game'
+
 export enum CharacterSetId {
   Vowels = 'vowels',
   KCharacters = 'kCharacters',
@@ -205,8 +207,13 @@ export const characterMap: Record<string, CharacterSet> = {
 
 const { a, e, i, o, u, ka, ke, ki, ko, ku } = characterMap
 
-export const levelOneCharacters = [a, e, i, o, u]
-export const kCharacters = [ka, ke, ki, ko, ku]
+const vowels = [a, e, i, o, u]
+const kCharacters = [ka, ke, ki, ko, ku]
+
+export const characterSetMap: Record<CharacterSetId, CharacterSet[]> = {
+  [CharacterSetId.Vowels]: vowels,
+  [CharacterSetId.KCharacters]: kCharacters,
+}
 
 export const characterSetOptions: CharacterSetOption[] = [
   {
@@ -219,10 +226,6 @@ export const characterSetOptions: CharacterSetOption[] = [
   },
 ]
 
-export interface CharacterSet {
-  jp: string
-  en: string
-}
 export interface CharacterSetOption {
   label: string
   id: CharacterSetId

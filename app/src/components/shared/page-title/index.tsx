@@ -16,7 +16,7 @@ export const PageTitle: FC<PageTitleProps> = ({
     <>
       <TitleContainer hasBottomMargin={hasBottomMargin}>
         <View>
-          <Title>{title}</Title>
+          <Title fontSize='28px'>{title}</Title>
           {subTitle ? <Subtitle>{subTitle}</Subtitle> : null}
         </View>
         {shouldShowIcons ? (

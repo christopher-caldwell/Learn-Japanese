@@ -6,8 +6,8 @@ import { useRecoilState } from 'recoil'
 
 import { activeTabAtom } from '@/store'
 import { width, tabBarHeight } from '@/constants'
-import { Icon } from '@/components/shared'
-import { Routes } from '@/views/authenticated/routes'
+import { IonIcon } from '@/components/shared'
+import { Routes } from '@/router/routes'
 
 const StaticTabBar: FC<TabBarProps> = ({ tabs, value, navigate }) => {
   const { primaryTextColor, secondaryTextColor } = useContext(ThemeContext)
@@ -74,7 +74,7 @@ const StaticTabBar: FC<TabBarProps> = ({ tabs, value, navigate }) => {
           <Fragment {...{ key }}>
             <TouchableWithoutFeedback onPress={() => onPress(tab, key)}>
               <Animated.View style={[styles.tab, { opacity }]}>
-                <Icon name={tab.icon} color={secondaryTextColor} size={25} />
+                <IonIcon name={tab.icon} color={secondaryTextColor} size={25} />
               </Animated.View>
             </TouchableWithoutFeedback>
             <Animated.View
@@ -89,7 +89,7 @@ const StaticTabBar: FC<TabBarProps> = ({ tabs, value, navigate }) => {
               ]}
             >
               <View>
-                <Icon name={tab.icon} color={primaryTextColor} size={25} />
+                <IonIcon name={tab.icon} color={primaryTextColor} size={25} />
               </View>
             </Animated.View>
           </Fragment>

@@ -1,25 +1,45 @@
-import React, { FC, useCallback, useState } from 'react'
+import React, { Dispatch, FC, SetStateAction, useCallback, useEffect, useState } from 'react'
 
-import { Icon } from '@/components/shared/icon'
+import { IonIcon } from '@/components/shared/icon'
 import { DropDownItem } from '@/components/shared/drop-down'
 import { RowContainer, OptionLabel, CheckBox } from './elements'
 
 export const MultiSelect: FC<Props> = ({ items, onSelectionChange, dropDownLabel }) => {
   const [selectedItems, setSelectedItems] = useState<SelectedItemMap>({})
+  const [isSelectAllChosen, setIsSelectAllChosen] = useState<boolean>(false)
+
+  useEffect(() => {
+    onSelectionChange(Object.values(selectedItems))
+  }, [selectedItems, onSelectionChange])
 
   const handleSelection = useCallback(
     (selectedIndex: number) => {
       setSelectedItems(currentlySelectedItems => {
-        const newSelectedItems = handleSelectionHelper(currentlySelectedItems, selectedIndex, items)
-        onSelectionChange(Object.values(newSelectedItems))
+        const newSelectedItems = handleSelectionHelper(
+          currentlySelectedItems,
+          selectedIndex,
+          items,
+          setIsSelectAllChosen
+        )
         return newSelectedItems
       })
     },
-    [items, onSelectionChange]
+    [items]
   )
+
+  const handleSelectAll = useCallback(() => {
+    setIsSelectAllChosen(isCurrentlySelected => {
+      setSelectedItems(currentlySelectedItems => {
+        const newSelectedItems = handleSelectAllHelper(currentlySelectedItems, items, !isCurrentlySelected)
+        return newSelectedItems
+      })
+      return !isCurrentlySelected
+    })
+  }, [items, setIsSelectAllChosen])
 
   return (
     <DropDownItem label={dropDownLabel} isInitiallyOpen={false} icons={icons}>
+      <CheckRow label='Select All' handleSelect={handleSelectAll} isSelected={isSelectAllChosen} />
       {items.map(({ id, label }, index) => (
         <CheckRow
           index={index}
@@ -34,13 +54,13 @@ export const MultiSelect: FC<Props> = ({ items, onSelectionChange, dropDownLabel
 }
 
 const icons = {
-  isClosed: <Icon size={22} name='chevron-down' />,
-  isOpen: <Icon size={22} name='chevron-up' />,
+  isClosed: <IonIcon size={22} name='chevron-down' />,
+  isOpen: <IonIcon size={22} name='chevron-up' />,
 }
 
 const CheckRow: FC<CheckRowProps> = ({ label, index, isSelected, handleSelect }) => {
   const localHandleSelect = useCallback(() => {
-    handleSelect(index)
+    handleSelect(index || 0)
   }, [handleSelect, index])
 
   return (
@@ -54,7 +74,8 @@ const CheckRow: FC<CheckRowProps> = ({ label, index, isSelected, handleSelect })
 const handleSelectionHelper = (
   currentlySelectedItems: SelectedItemMap,
   targetIndex: number,
-  allOptions: SelectionItem[]
+  allOptions: SelectionItem[],
+  setIsSelectAllChosen: Dispatch<SetStateAction<boolean>>
 ): SelectedItemMap => {
   const mutableSelections = { ...currentlySelectedItems }
   const itemInFullList = allOptions[targetIndex]
@@ -62,6 +83,25 @@ const handleSelectionHelper = (
   if (mutableSelections[itemInFullList.id]) delete mutableSelections[itemInFullList.id]
   // Remove the item if inside map
   else mutableSelections[itemInFullList.id] = { ...itemInFullList }
+  setIsSelectAllChosen(false)
+  return mutableSelections
+}
+
+const handleSelectAllHelper = (
+  currentlySelectedItems: SelectedItemMap,
+  allOptions: SelectionItem[],
+  isSelectAllChosen: boolean
+): SelectedItemMap => {
+  const mutableSelections = { ...currentlySelectedItems }
+  if (isSelectAllChosen) {
+    allOptions.forEach(itemInFullList => {
+      mutableSelections[itemInFullList.id] = { ...itemInFullList }
+    })
+  } else {
+    allOptions.forEach(itemInFullList => {
+      delete mutableSelections[itemInFullList.id]
+    })
+  }
   return mutableSelections
 }
 
@@ -79,7 +119,7 @@ type SelectedItemMap = Record<string, SelectionItem>
 
 interface CheckRowProps {
   label: string
-  index: number
+  index?: number
   handleSelect: (index: number) => void
   isSelected: boolean
 }

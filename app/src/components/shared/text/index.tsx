@@ -8,7 +8,7 @@ interface TitleProps {
 export const Title = styled.Text<TitleProps>`
   ${boldFont}
   ${themeText}
-  font-size: ${({ fontSize = '28px' }) => fontSize};
+  font-size: ${({ fontSize = '20px' }) => fontSize};
 `
 
 export const Subtitle = styled.Text<TitleProps>`

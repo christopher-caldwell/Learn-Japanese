@@ -1,9 +1,15 @@
 import React, { FC, useContext } from 'react'
 import { ThemeContext } from 'styled-components/native'
 import { IconProps } from 'react-native-vector-icons/Icon'
-import VectorIcon from 'react-native-vector-icons/MaterialCommunityIcons'
+import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
-export const Icon: FC<IconProps> = ({ color, ...restProps }) => {
+export const MaterialIcon: FC<IconProps> = ({ color, ...restProps }) => {
   const theme = useContext(ThemeContext)
-  return <VectorIcon color={color || theme.primaryTextColor} {...restProps} />
+  return <MaterialCommunityIcon color={color || theme.primaryTextColor} {...restProps} />
+}
+
+export const IonIcon: FC<IconProps> = ({ color, ...restProps }) => {
+  const theme = useContext(ThemeContext)
+  return <Ionicons color={color || theme.primaryTextColor} {...restProps} />
 }
